@@ -1,0 +1,45 @@
+.clock-container {
+    text-align: center;
+  }
+  
+  .column {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .colon {
+    display: inline-block;
+    padding: 0 10px 0 10px;
+    vertical-align: top;
+    line-height: 75px;
+    font-size: 86px;
+    transform: translateY(calc(50vh - 43px));
+    transition: transform 300ms;
+  }
+  
+  .colon:after {
+    content: ':';
+  }
+  
+  .num {
+    font-size: 86px;
+    line-height: 86px;
+    opacity: 0.025;
+    transition: opacity 500ms, text-shadow 100ms;
+  }
+  
+  .num.visible {
+    opacity: 1.0;
+    text-shadow: 1px 1px 0px hsl(0, 0%, 0%);
+    color:red;
+  }
+  
+  .num.close {
+    opacity: 0.35;
+  }
+  
+  .num.far,
+  .num.distant {
+    opacity: 0.15;
+  }
+  
