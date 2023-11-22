@@ -5,9 +5,9 @@ const ScrollerInner = ({ tags, animated }) => {
   const allTags = animated ? [...tags, ...tags] : tags;
 
   return (
-    <ul className="scroller__inner">
+    <ul className="scroller-inner">
       {allTags.map((tag, index) => (
-        <li key={index} className="tag-list__item" aria-hidden={!animated && index >= tags.length}>
+        <li key={index} className="tag-list-item" aria-hidden={!animated && index >= tags.length}>
           {tag}
         </li>
       ))}

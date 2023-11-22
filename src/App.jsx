@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ClockColumn from './ClockColumn';
 import firewatch from './utils/firewatch-green.jpg';
-import Scroller from './components/scroller/Scroller'
+import Scroller from './components/scroller/Scroller';
 function App() {
   const size = 86;
   const [timeZone, setTimeZone] = useState('UTC');
@@ -26,34 +26,30 @@ function App() {
 
   return (
     <div className = "body" style = {backgroundStyle}>
-      
       <Scroller direction="left" speed="fast" />
-    
-    <div className="clock-container">
-      {
-        time.split(':').flatMap((timePart, index, timePartsArray) => {
-          // Determine the range based on whether it's the first digit of the hours
-          const range = index === 0 ? [0, 1, 2] : undefined;
-
-          return [
-            
-            ...timePart.split('').map((digit, digitIndex) => {
-              // Only pass the range for the first digit of the hours
-              const isHourFirstDigit = index === 0 && digitIndex === 0;
-              return (
-                <ClockColumn
-                  key={`${index}-${digitIndex}`}
-                  value={+digit}
-                  size={size}
-                  range={isHourFirstDigit ? range : undefined}
-                />
-              );
-            }),
-            index < timePartsArray.length - 1 ? <div key={`colon-${index}`} className="colon"></div> : null,
-          ];
-        })
-      }
-    </div>
+      <div className="clock-container">
+        {
+          time.split(':').flatMap((timePart, index, timePartsArray) => {
+            // Determine the range based on whether it's the first digit of the hours
+            const range = index === 0 ? [0, 1, 2] : undefined;
+            return [
+              ...timePart.split('').map((digit, digitIndex) => {
+                // Only pass the range for the first digit of the hours
+                const isHourFirstDigit = index === 0 && digitIndex === 0;
+                return (
+                  <ClockColumn
+                    key={`${index}-${digitIndex}`}
+                    value={+digit}
+                    size={size}
+                    range={isHourFirstDigit ? range : undefined}
+                  />
+                );
+              }),
+              index < timePartsArray.length - 1 ? <div key={`colon-${index}`} className="colon"></div> : null,
+            ];
+          })
+        }
+      </div>
     </div>
   );
 }
