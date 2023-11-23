@@ -1,7 +1,7 @@
 import React from 'react';
 import './ClockColumn.css';
 
-function ClockColumn({ value, size, range }) {
+export default function ClockColumn({ value, size, range }) {
   // If a range is provided, use it; otherwise, default to 0-9
   const numbers = range || Array.from({ length: 10 }, (_, i) => i);
   const offset = -value * size;
@@ -26,4 +26,3 @@ function getClass(current, num) {
   return classList[Math.abs(current - num)] || '';
 }
 
-export default ClockColumn;

@@ -15,6 +15,7 @@ const ScrollerInner = ({ tags, animated }) => {
   );
 };
 
+
 const Scroller = ({ direction = 'left', speed = 'normal' }) => {
   const [isAnimated, setIsAnimated] = useState(false);
   const cities = [
@@ -25,20 +26,15 @@ const Scroller = ({ direction = 'left', speed = 'normal' }) => {
     "Tokyo", "Sydney","Norway"
   ];
 
-  const handleCityClick = (cities) => {
-    onclick(console.log(cities[i]))
-  }
-
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const handleMediaChange = () => setIsAnimated(!mediaQuery.matches);
-
-    mediaQuery.addListener(handleMediaChange);
+    const handleMediaChange = (event) => setIsAnimated(!event.matches);
+  
+    mediaQuery.addEventListener('change', handleMediaChange);
     setIsAnimated(!mediaQuery.matches);
-
-    return () => mediaQuery.removeListener(handleMediaChange);
+  
+    return () => mediaQuery.removeEventListener('change', handleMediaChange);
   }, []);
-
   
 
   return (
@@ -49,3 +45,5 @@ const Scroller = ({ direction = 'left', speed = 'normal' }) => {
 };
 
 export default Scroller;
+
+

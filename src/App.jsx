@@ -3,16 +3,15 @@ import ClockColumn from './ClockColumn';
 import Scroller from './components/scroller/Scroller';
 import Background from './styles/Background';
 
-function App() {
+export default function App() {
   const size = 86;
   const [timeZone, setTimeZone] = useState('UTC');
   const [time, setTime] = useState(getTime(timeZone));
  
-
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getTime(timeZone));
-    }, 1000); // Seconds
+    }, 1000);
     return () => clearInterval(interval);
   }, [timeZone]); // Re-run the effect when timeZone changes
 
@@ -59,5 +58,3 @@ function getTime(timeZone) {
   const timeParts = formatter.format(d).split(':');
   return timeParts.join(':'); 
 }
-
-export default App;
