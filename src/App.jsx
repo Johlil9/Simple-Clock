@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ClockColumn from './ClockColumn';
-import firewatch from './utils/firewatch-green.jpg';
 import Scroller from './components/scroller/Scroller';
+import Background from './styles/Background';
+
 function App() {
   const size = 86;
   const [timeZone, setTimeZone] = useState('UTC');
   const [time, setTime] = useState(getTime(timeZone));
-  const backgroundStyle = {
-    backgroundImage: `url(${firewatch})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    width: '100vw',
-    height: '100vh',
-  };
+ 
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getTime(timeZone));
@@ -20,13 +16,9 @@ function App() {
     return () => clearInterval(interval);
   }, [timeZone]); // Re-run the effect when timeZone changes
 
-  const handleTimeZoneChange = (event) => {
-    setTimeZone(event.target.value);
-  };
-
   return (
-    <div className = "body" style = {backgroundStyle}>
-      <Scroller direction="left" speed="fast" />
+    <Background>
+      <Scroller direction="left" speed="fast"/>
       <div className="clock-container">
         {
           time.split(':').flatMap((timePart, index, timePartsArray) => {
@@ -50,7 +42,7 @@ function App() {
           })
         }
       </div>
-    </div>
+      </Background>
   );
 }
 

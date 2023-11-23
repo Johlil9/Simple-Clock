@@ -25,6 +25,10 @@ const Scroller = ({ direction = 'left', speed = 'normal' }) => {
     "Tokyo", "Sydney","Norway"
   ];
 
+  const handleCityClick = (cities) => {
+    onclick(console.log(cities[i]))
+  }
+
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const handleMediaChange = () => setIsAnimated(!mediaQuery.matches);
@@ -34,6 +38,8 @@ const Scroller = ({ direction = 'left', speed = 'normal' }) => {
 
     return () => mediaQuery.removeListener(handleMediaChange);
   }, []);
+
+  
 
   return (
     <div className={`scroller ${direction} ${speed}`} data-animated={isAnimated}>
