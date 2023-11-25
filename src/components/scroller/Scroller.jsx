@@ -15,7 +15,6 @@ const ScrollerInner = ({ tags, animated }) => {
   );
 };
 
-
 const Scroller = ({ direction = 'left', speed = 'normal' }) => {
   const [isAnimated, setIsAnimated] = useState(false);
   const cities = [
@@ -45,5 +44,3 @@ const Scroller = ({ direction = 'left', speed = 'normal' }) => {
 };
 
 export default Scroller;
-
-

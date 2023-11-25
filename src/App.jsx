@@ -5,15 +5,16 @@ import Background from './styles/Background';
 
 export default function App() {
   const size = 86;
-  const [timeZone, setTimeZone] = useState('UTC');
+  const [timeZone, setTimeZone] = useState('Europe/Oslo'); // Set initial timezone to Oslo
   const [time, setTime] = useState(getTime(timeZone));
- 
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getTime(timeZone));
     }, 1000);
+  
     return () => clearInterval(interval);
-  }, [timeZone]); // Re-run the effect when timeZone changes
+  }, [timeZone]);
 
   return (
     <Background>

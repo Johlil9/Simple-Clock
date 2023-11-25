@@ -1,5 +1,5 @@
 import React from 'react';
-import firewatch from '../utils/firewatch-river.jpg';
+import firewatch from '../utils/firewatch-green.jpg';
 
 const Background = ({ children }) => {
   const backgroundStyle = {
