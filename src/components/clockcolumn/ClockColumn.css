@@ -29,9 +29,22 @@
 }
   
 .num.visible {
+  font-family: 'Orbitron';
   opacity: 1.0;
-  text-shadow: 1px 1px 0px hsl(0, 0%, 0%);
-  color:red;
+  color: #A3D9A5;
+  text-shadow: 
+    0 0 5px #A3D9A5, /* Subtle glow */
+    0 0 10px #A3D9A5, /* Outer glow to create a halo effect */
+    1px 1px 0px hsl(0, 0%, 10%); /* Soft shadow for depth */
+  font-size: 100px; 
+  transition: color 0.3s ease;
+  /* Animation for a blinking effect */
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { color: #4CAF50; }
+  50% { color: transparent; }
 }
   
 .num.close {

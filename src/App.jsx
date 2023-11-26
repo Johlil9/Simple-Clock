@@ -23,9 +23,11 @@ export default function App() {
         {
           time.split(':').flatMap((timePart, index, timePartsArray) => {
             let range;
-            if (index === 0) { // Hours first digit
-              range = [0, 1, 2];
-            } else if (index === 4 || index === 2) { // Minutes and seconds first digit
+          
+            if (index === 0) { // First digit of the hour
+              // If the first digit is 2, the next hour should show 0 (for 00 hours)
+              range = timePart.startsWith('23') ? [0] : [0, 1, 2];
+            } else if (index === 3 || index === 6) { // First digit of minutes and seconds
               range = [0, 1, 2, 3, 4, 5];
             }
           
@@ -60,6 +62,12 @@ function getTime(timeZone) {
     timeZone: timeZone
   };
   const formatter = new Intl.DateTimeFormat('en-US', options);
-  const timeParts = formatter.format(d).split(':');
-  return timeParts.join(':'); 
+  let timeParts = formatter.format(d).split(':');
+
+  // Reset hour if it's '24'
+  if (timeParts[0] === '24') {
+    timeParts[0] = '00';
+  }
+
+  return timeParts.join(':');
 }
