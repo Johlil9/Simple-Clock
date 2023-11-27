@@ -22,7 +22,7 @@ export default function ClockColumn({ value, size, range }) {
 }
 
 function getClass(current, num) {
-  const classList = ['visible', 'close', 'far', 'far', 'distant', 'distant'];
+  const classList = ['visible', 'close', 'far', 'far', 'veryFar', 'extremelyFar', 'almostInvisible', 'insivible'];
   return classList[Math.abs(current - num)] || '';
 }
 

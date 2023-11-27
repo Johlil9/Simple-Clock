@@ -50,10 +50,26 @@
 .num.close {
   opacity: 0.35;
 }
-  
+
+ 
 .num.far,
 .num.distant {
-  opacity: 0.15;
+  opacity: 0.05;
+}
+.num.veryFar {
+  opacity: 0.025;
+}
+
+.num.extremelyFar {
+  opacity: 0.01;
+}
+
+.num.almostInvisible {
+  opacity: 0.005;
+}
+
+.num.invisible {
+  opacity: 0.0;
 }
 
 @media screen and (max-width: 600px) {
