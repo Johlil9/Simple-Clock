@@ -25,15 +25,17 @@ export default function App() {
             let range;
           
             if (index === 0) { // First digit of the hour
-              // If the first digit is 2, the next hour should show 0 (for 00 hours)
-              range = timePart.startsWith('23') ? [0] : [0, 1, 2];
-            } else if (index === 3 || index === 6) { // First digit of minutes and seconds
+              // If the second digit of the hour is less than 4 (i.e., 20-23), the range is [0, 1, 2]
+              // Otherwise (i.e., 00-19), the range is [0, 1]
+              const secondHourDigit = timePartsArray[0][1];
+              range = secondHourDigit < '4' ? [0, 1, 2] : [0, 1];
+            } else if (index === 1 || index === 2) { // First digit of minutes and seconds
               range = [0, 1, 2, 3, 4, 5];
             }
           
             return [
               ...timePart.split('').map((digit, digitIndex) => {
-                const isSpecialFirstDigit = index === 0 && digitIndex === 0 || index > 1 && digitIndex === 0;
+                const isSpecialFirstDigit = (index === 0 && digitIndex === 0) || (index > 0 && digitIndex === 0);
                 return (
                   <ClockColumn
                     key={`${index}-${digitIndex}`}
