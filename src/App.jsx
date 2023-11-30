@@ -4,18 +4,20 @@ import Scroller from './components/scroller/Scroller';
 import Background from './styles/Background';
 
 export default function App() {
-  const size = 86;
+  const size = 86; // size used for the clock digits
   const [timeZone, setTimeZone] = useState('Europe/Oslo'); // Set initial timezone to Oslo
-  const [time, setTime] = useState(getTime(timeZone));
-  
+  const [time, setTime] = useState(getTime(timeZone)); // State to track the current time
+  // Effect hook to update the time every second
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getTime(timeZone));
     }, 1000);
   
+    // Cleanup function to clear interval on component unmount
     return () => clearInterval(interval);
   }, [timeZone]);
 
+  // Render the App component
   return (
     <Background>
       <Scroller direction="left" speed="fast"/>
@@ -34,6 +36,7 @@ export default function App() {
             }
           
             return [
+              // Map each digit to a ClockColumn component and add colons
               ...timePart.split('').map((digit, digitIndex) => {
                 const isSpecialFirstDigit = (index === 0 && digitIndex === 0) || (index > 0 && digitIndex === 0);
                 return (
@@ -45,6 +48,7 @@ export default function App() {
                   />
                 );
               }),
+              // Add colon between parts of the time
               index < timePartsArray.length - 1 ? <div key={`colon-${index}`} className="colon"></div> : null,
             ];
           })
@@ -55,7 +59,8 @@ export default function App() {
 }
 
 function getTime(timeZone) {
-  const d = new Date();
+  const d = new Date(); // Get current date and time
+  // Options for formatting the time
   const options = {
     hour: '2-digit',
     minute: '2-digit',
