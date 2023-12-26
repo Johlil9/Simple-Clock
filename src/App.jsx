@@ -17,10 +17,33 @@ export default function App() {
     return () => clearInterval(interval);
   }, [timeZone]);
 
+  const handleCityClick = (city) => {
+    // Here, you would convert the city to its corresponding timezone
+    // For simplicity, I'm using city names as timezone, but you should use proper timezone strings
+    const timeZoneMap = {
+      // ... (map city names to their respective timezone strings)
+      'Honolulu': 'Pacific/Honolulu',
+      'Anchorage': 'America/Anchorage',
+      'Los Angeles': 'America/Los_Angeles',
+      'Denver': 'America/Denver',
+      'Mexico City': 'America/Mexico_City',
+      'New York': 'America/New_York',
+      'Buenos Aires': 'America/Buenos_Aires',
+      'London': 'Europe/London',
+      'Paris': 'Europe/Paris',
+      'Moscow': 'Europe/Moscow',
+      'Dubai': 'Asia/Dubai',
+      'Beijing': 'Asia/Shanghai', 
+      'Tokyo': 'Asia/Tokyo',
+      'Sydney': 'Australia/Sydney',
+      'Norway': 'Europe/Oslo'
+    };
+    setTimeZone(timeZoneMap[city] || 'Europe/Oslo');
+  };
   // Render the App component
   return (
     <Background>
-      <Scroller direction="left" speed="fast"/>
+      <Scroller direction="left" speed="fast" onTagClick={handleCityClick}/>
       <div className="clock-container">
         {
           time.split(':').flatMap((timePart, index, timePartsArray) => {

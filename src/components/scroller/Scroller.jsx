@@ -2,24 +2,30 @@ import React, { useState, useEffect } from 'react';
 import './Scroller.css';
 
 // ScrollerInner component: Responsible for rendering the list of tags.
-const ScrollerInner = ({ tags, animated }) => {
+const ScrollerInner = ({ tags, animated, onTagClick }) => {
   // If 'animated' is true, duplicate the tags array for a seamless looping effect.
   const allTags = animated ? [...tags, ...tags] : tags;
 
   // Render 
   return (
     <ul className="scroller-inner">
-      {allTags.map((tag, index) => (
-        <li key={index} className="tag-list-item" aria-hidden={!animated && index >= tags.length}>
-          {tag}
-        </li>
-      ))}
-    </ul>
-  );
+    {allTags.map((tag, index) => (
+      <li
+        key={index}
+        className="tag-list-item"
+        aria-hidden={!animated && index >= tags.length}
+        onClick={() => onTagClick(tag)} // Add onClick event to call onTagClick with the tag
+      >
+        {tag}
+      </li>
+    ))}
+  </ul>
+);
 };
 
+
 // Manages the scrolling behavior and animation.
-const Scroller = ({ direction = 'left', speed = 'normal' }) => {
+const Scroller = ({ direction = 'left', speed = 'normal', onTagClick }) => {
   const [isAnimated, setIsAnimated] = useState(false);
   // Predefined list that will be used in the ScrollerInner component.
   const cities = [
@@ -46,7 +52,7 @@ const Scroller = ({ direction = 'left', speed = 'normal' }) => {
   // Render the Scroller component with dynamic classes for direction and speed.
   return (
     <div className={`scroller ${direction} ${speed}`} data-animated={isAnimated}>
-      <ScrollerInner tags={cities} animated={isAnimated} />
+      <ScrollerInner tags={cities} animated={isAnimated} onTagClick={onTagClick} />
     </div>
   );
 };
