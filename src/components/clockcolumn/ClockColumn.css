@@ -1,6 +1,8 @@
 .clock-container {
-    text-align: center;
-  }
+  text-align: center;
+  position: relative; 
+  z-index: 1; 
+}
   
 .column {
   display: inline-block;
